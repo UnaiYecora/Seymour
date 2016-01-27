@@ -1,0 +1,100 @@
+/*--------------------------------------------------------------
+# Functions, variables and mixins
+--------------------------------------------------------------*/
+
+/*--------------------------------------------------------------
+# Variables
+--------------------------------------------------------------*/
+
+/*--------------------------------------------------------------
+# Mixins
+--------------------------------------------------------------*/
+.center-block() {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.outline{&:focus{outline: none;}}
+
+.clearNone{clear: none !important;}
+
+// Floats
+.pull-right {
+	float: right !important;
+}
+.pull-left {
+	float: left !important;
+}
+
+.hidden {
+  display: none !important;
+}
+
+[role="button"] {
+  cursor: pointer;
+}
+
+
+
+/*--------------------------------------------------------------
+# Parametric Mixins
+--------------------------------------------------------------*/
+.border-radius (@radius: 5px) {
+	-webkit-border-radius: @radius;
+	-moz-border-radius:    @radius;
+	border-radius:         @radius;
+
+	-moz-background-clip:    padding;
+	-webkit-background-clip: padding-box;
+	background-clip:         padding-box;
+}
+
+.box-shadow (@string) {
+	-webkit-box-shadow: @string;
+	-moz-box-shadow:    @string;
+	box-shadow:         @string;
+}
+
+.animation (@name, @duration: 300ms, @delay: 0, @ease: ease) {
+	-webkit-animation: @name @duration @delay @ease;
+	-moz-animation:    @name @duration @delay @ease;
+	-ms-animation:     @name @duration @delay @ease;
+}
+
+.transition (@transition) {
+	-webkit-transition: @transition;
+	-moz-transition:    @transition;
+	-ms-transition:     @transition;
+	-o-transition:      @transition;
+}
+
+.filter (@filter) {
+	filter: @filter;
+	-webkit-filter: @filter;
+	-moz-filter: @filter;
+	-o-filter: @filter;
+	-ms-filter: @filter;
+}
+
+/*--------------------------------------------------------------
+# Media Queries
+--------------------------------------------------------------*/
+/*==========  Mobile First Method  ==========*/
+
+/* Custom, iPhone Retina */
+@screen-xs: 320px;
+
+/* Extra Small Devices, Phones */
+@screen-hs: 480px;
+
+/* Small Devices, Tablets */
+@screen-sm: 768px;
+
+/* Medium Devices, Desktops */
+@screen-md: 992px;
+
+/* Large Devices, Wide Screens */
+@screen-lg: 1200px;
+
+/* Usage: @media (min-width: @screen-sm) and (max-width: @screen-lg) { ... } */
