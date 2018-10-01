@@ -59,3 +59,10 @@ function publish_later_on_feed($where) {
     return $where;
 }
 add_filter('posts_where', 'publish_later_on_feed');
+
+//////////////////////////////////////////////////////////
+// Define un máximo de revisiones de posts para ser
+// almacenadas (default = infinito) — Esta función será
+// ignorada si el parámetro está definido en wp-config.php
+//////////////////////////////////////////////////////////
+if (!defined('WP_POST_REVISIONS')) define('WP_POST_REVISIONS', 12);
