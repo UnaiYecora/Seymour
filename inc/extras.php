@@ -27,3 +27,12 @@ function seymour_body_classes( $classes ) {
 	return $classes;
 }
 add_filter( 'body_class', 'seymour_body_classes' );
+
+//////////////////////////////////////////////////////////
+// Eliminar información sobre la versión de WP de
+// headers y feeds para mejorar la seguridad
+//////////////////////////////////////////////////////////
+function complete_version_removal() {
+    return '';
+}
+add_filter('the_generator', 'complete_version_removal');
