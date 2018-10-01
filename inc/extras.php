@@ -66,3 +66,28 @@ add_filter('posts_where', 'publish_later_on_feed');
 // ignorada si el parámetro está definido en wp-config.php
 //////////////////////////////////////////////////////////
 if (!defined('WP_POST_REVISIONS')) define('WP_POST_REVISIONS', 12);
+
+//////////////////////////////////////////////////////////
+// Disable WordPress emoji extra code bloat for better
+// page speed (emojis will keep working on modern browsers)
+//////////////////////////////////////////////////////////
+function disable_wp_emojicons() {
+  remove_action( 'admin_print_styles', 'print_emoji_styles' );
+  remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
+  remove_action( 'admin_print_scripts', 'print_emoji_detection_script' );
+  remove_action( 'wp_print_styles', 'print_emoji_styles' );
+  remove_filter( 'wp_mail', 'wp_staticize_emoji_for_email' );
+  remove_filter( 'the_content_feed', 'wp_staticize_emoji' );
+  remove_filter( 'comment_text_rss', 'wp_staticize_emoji' );
+  add_filter( 'tiny_mce_plugins', 'disable_emojicons_tinymce' );
+  add_filter( 'emoji_svg_url', '__return_false' );
+}
+add_action( 'init', 'disable_wp_emojicons' );
+
+function disable_emojicons_tinymce( $plugins ) {
+  if ( is_array( $plugins ) ) {
+    return array_diff( $plugins, array( 'wpemoji' ) );
+  } else {
+    return array();
+  }
+}
